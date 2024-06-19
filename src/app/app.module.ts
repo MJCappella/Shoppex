@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { Approutes } from './app.routes'; // Import Approutes
-import { HttpClient, HttpClientModule, withFetch} from '@angular/common/http';
+import { HttpClient, HttpClientModule, withFetch, provideHttpClient} from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [],
@@ -16,8 +17,13 @@ import { HttpClient, HttpClientModule, withFetch} from '@angular/common/http';
     FormsModule,
     Approutes,// Use Approutes module
     HttpClientModule,
+    RouterModule
   ],
-  providers: [HttpClientModule, HttpClient],
+  providers: [
+    HttpClientModule,
+    HttpClient,
+    provideHttpClient(withFetch())
+  ],
   bootstrap: []
 })
 
